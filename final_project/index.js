@@ -10,23 +10,23 @@ app.use(express.json());
 
 app.use(session({secret:"fingerpint"}))
 
-app.use("/customer/auth/*", function auth(req,res,next){
-//Write the authenication mechanism here
-if(req.session.authorization) { //get the authorization object stored in the session
-    token = req.session.authorization['accessToken']; //retrieve the token from authorization object
-    jwt.verify(token, "access",(err,user)=>{ //Use JWT to verify token
-        if(!err){
-            req.user = user;
-            next();
-        }
-        else{
-            return res.status(403).json({message: "User not authenticated"})
-        }
-     });
- } else {
-     return res.status(403).json({message: "User not logged in"})
- }
-});
+// app.use("/customer/auth/*", function auth(req,res,next){
+// //Write the authenication mechanism here
+// if(req.session.authorization) { //get the authorization object stored in the session
+//     token = req.session.authorization['accessToken']; //retrieve the token from authorization object
+//     jwt.verify(token, "access",(err,user)=>{ //Use JWT to verify token
+//         if(!err){
+//             req.user = user;
+//             next();
+//         }
+//         else{
+//             return res.status(403).json({message: "User not authenticated"})
+//         }
+//      });
+//  } else {
+//      return res.status(403).json({message: "User not logged in"})
+//  }
+// });
  
 const PORT =5000;
 
